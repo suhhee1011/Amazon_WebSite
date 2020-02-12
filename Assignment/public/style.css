@@ -1,0 +1,130 @@
+body{
+    margin:0;
+    background-color:lightgrey;
+
+}
+img#logos{
+    height: 50px;
+    width: 100px;
+    
+}
+#categories img,#bestseller img{
+    height: 50px;
+    width: 100px;
+    
+}
+#categories p.ctitle,#bestseller p.ctitle{
+    font-family: fantasy;
+    font-size:50px;
+    text-align: center;
+    font-weight: bold;
+}
+#categories ul,#bestseller ul, #products ul{
+   
+    list-style-type: none;
+    margin:100;
+    padding:100;
+    overflow-y: auto;
+    background-color: white;
+    overflow-y:auto; 
+    border: 2px solid black;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 2px;
+    padding:5px;   
+
+}
+#categories ul p,#bestseller ul p, #products ul{
+    font-family: fantasy;
+}
+#categories li,#bestseller li,#products li{
+    float:left;
+    border: 2px solid black;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 2px;
+    padding:5px;
+    
+    
+
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+
+}
+nav ul{
+
+    list-style-type: none;
+    margin:0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+nav li {
+    float:left;
+}
+nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+
+}
+nav li a:hover{
+    background-color: #111;
+}
+
+#sidebar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+  }
+  
+  #sidebar li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  
+
+  #sidebar li a:hover {
+    background-color: #555;
+    color: white;
+  }
+#promo img{
+    height: 250px;
+    width: 1500px;
+}
+#productsPage{
+    display: flex;
+
+}
+#sidebar{
+    flex:1;
+}
+
+#products{
+    flex:3;
+    display: flex;
+
+}
+#eachproducts img{
+
+    height: 100px;
+    width:100px;
+}
+#eachproducts {
+    flex:3;
+    width:250px;
+    
+}
+

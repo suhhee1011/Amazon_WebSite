@@ -1,0 +1,26 @@
+<div id="productsPage">
+    <div id="sidebar">
+        <ul>
+            <li><a href="">Automotive</a></li>
+            <li><a href="">Arts & Crafts</a></li>
+            <li><a href="">Beauty and personal care</a></li>
+            <li><a href="">Computers</a></li>
+            <li><a href="">Electronics</a></li>
+            <li><a href="">Woman's Fashion</a></li>
+            <li><a href="">Men's Fashion</a></li>
+            <li><a href="">Home and Kitchen</a></li>
+            <li><a href="">Toys and Games</a></li>
+        </ul>
+    </div>
+    <div id="products">
+        <div id="eachproducts">
+            {{#each productPic}}
+                <img src="{{this.source}}" ali="{{this.name}}">
+                <p>{{this.name}}->${{this.price}}</p>
+                <p>Category: {{this.category}}</p>
+                <p>Bestseller: {{this.Bestseller}}</p>
+            
+            {{/each}}
+        </div>
+    </div>
+</div>
