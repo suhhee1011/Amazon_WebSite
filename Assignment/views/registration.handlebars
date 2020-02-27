@@ -1,18 +1,18 @@
 <p>{{error}}</p>
 <p>{{sucess}}</p>
-<form action="/registration" method= "POST">
+<form id="regi" action="/registration" method= "POST" >
 <fieldset>
-    <legend><img src="amazonlogo.PNG"></legend>
-    <label for="name">Please enter your Name</label>
+    <legend><img src="seophoelogogracrop.PNG"></legend>
+    <p>Create an account</p>
+    <label for="name">Please enter your Name</label><br>
     <input type="text" id="name" name="name"> <br>
-    <label for="email">Please enter your mail</label>
+    <label for="email">Please enter your mail</label><br>
     <input type="text" id ="email" name="email"> <br>
-    <label for="password">Please enter your Password</label>
+    <label for="password">Please enter your Password</label><br>
      <input type="password" name ="password"> <br>
-    <label for="passwordAgain">Please enter your Password Again</label>
+    <label for="passwordAgain">Please enter your Password Again</label><br>
      <input type="password" name ="passwordAgain"> <br>
-    <input type="submit" value="Register">
-</fieldset>>
-
-  
+    <input class="button" type="submit" value="Register">
+</fieldset>
+    <p>Already Have an account?<a href ="/login" id = "signin">Sign in</a></p>
 </form>

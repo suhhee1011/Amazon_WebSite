@@ -1,22 +1,29 @@
 <div id="promo">
     <img src="promotionImage.PNG" ali ="Promotion">
 </div>
+<p class="ctitle">Categories</p>
 <div id="categories">
-    <p class="ctitle">Categories</p>
-    <ul>
-    {{#each productCategory}}
-    <li>
-       <p>{{this.category}}</p>
-        <img src ="{{this.source}}" ali ="{{this.name}}">
-        </li>
-    {{/each}}   
-    </ul>
-</div>
+    
 
-<div id="bestseller">
-     <p class="ctitle">Best Seller</p>
-    {{#each bestSell}}
-        
-        <img src ="{{this.source}}" ali ="{{this.name}}">
+    <div id="categorydiv">
+    {{#each productCategory}}
+    <div id="eachcategory">
+       <p>{{this.category}}</p>
+    <a href="/products"><img src ="{{this.source}}" ali ="{{this.name}}"></a>
+      
+    </div>
     {{/each}}   
+    </div>
+   
+</div>
+ <p class="ctitle">Best Seller</p>
+<div id="bestseller">
+    
+     <div id="bestsellerdiv">
+    {{#each bestSell}}
+        <div id="eachbestsell">
+        <img id="bestsell" src ="{{this.source}}" ali ="{{this.name}}">
+        </div>
+    {{/each}}   
+    </div>
 </div>

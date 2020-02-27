@@ -1,80 +1,40 @@
-body{
+html,body{
+
     margin:0;
-    background-color:lightgrey;
+    padding:0;
+    box-sizing: border-box;
+    background-color: rgb(223, 204, 204);
 
 }
-img#logos{
-    height: 50px;
-    width: 100px;
-    
-}
-#categories img,#bestseller img{
-    height: 50px;
-    width: 100px;
-    
-}
-#categories p.ctitle,#bestseller p.ctitle{
-    font-family: fantasy;
-    font-size:50px;
+p{
     text-align: center;
-    font-weight: bold;
-}
-#categories ul,#bestseller ul, #products ul{
-   
-    list-style-type: none;
-    margin:100;
-    padding:100;
-    overflow-y: auto;
-    background-color: white;
-    overflow-y:auto; 
-    border: 2px solid black;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 2px;
-    padding:5px;   
-
-}
-#categories ul p,#bestseller ul p, #products ul{
-    font-family: fantasy;
-}
-#categories li,#bestseller li,#products li{
-    float:left;
-    border: 2px solid black;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 2px;
-    padding:5px;
-    
-    
-
+    font-family: cursive;
 }
 
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
 
-}
 nav ul{
-
+    max-height: 100%;
+    max-width: 100%;
     list-style-type: none;
     margin:0;
-    padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: rgb(52, 52, 70);
 }
 nav li {
     float:left;
+    
 }
 nav li a {
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 50px 50px;
     text-decoration: none;
 
+}
+nav li img{
+    width: 100%;
+    height:40%;
 }
 nav li a:hover{
     background-color: #111;
@@ -82,10 +42,11 @@ nav li a:hover{
 
 #sidebar ul {
     list-style-type: none;
-    margin: 0;
+    margin: 50px 0 0 0;
     padding: 0;
-    width: 200px;
+    max-width: 90%;
     background-color: #f1f1f1;
+    border-radius: 10%;
   }
   
   #sidebar li a {
@@ -100,31 +61,154 @@ nav li a:hover{
     background-color: #555;
     color: white;
   }
-#promo img{
-    height: 250px;
-    width: 1500px;
-}
-#productsPage{
-    display: flex;
 
-}
-#sidebar{
-    flex:1;
-}
-
-#products{
-    flex:3;
-    display: flex;
-
-}
-#eachproducts img{
-
-    height: 100px;
-    width:100px;
-}
-#eachproducts {
-    flex:3;
-    width:250px;
+  #categories,#bestseller{
     
+    background-color: whitesmoke;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border-radius: 10%;
+  
 }
+
+#bestsell{
+    
+    width: 90%;
+    height:50%;
+    padding: 10% 5%;
+    margin: 2% 2%;
+    border-style: outset;
+    border-radius: 20%;
+   
+}
+
+
+
+p.ctitle{
+    font-size: 30px;
+
+}
+#categorydiv, #bestsellerdiv {
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    align-content: space-evenly;
+   
+    
+
+}
+#eachcategory{
+    width: 90%;
+    height:100%;
+    padding: 5%;
+    margin: 0% 2%;
+  
+    
+  
+    
+
+}
+#eachcategory img{
+    width: 90%;
+    height:50%;
+    padding: 5%;
+    margin: 0% 2%;
+    border-style: outset;
+    border-radius: 20%;
+    
+   
+}
+
+
+
+#eachbestsell{
+    width: 90%;
+    height:100%;
+    padding: 5%;
+    margin: 0% 2%;
+  
+    
+
+}
+
+#productsPage{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    width: 100%;
+    align-content: space-evenly;
+
+
+}
+#products{
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    align-content: space-evenly;
+    font-size: 1em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
+
+}
+
+#eachproducts {
+   
+    width: 80%;
+    height:90%;
+    margin: 5% 5%;
+    border-radius: 20%;
+    background-color: rgb(197, 168, 168);
+    font-size: 100%;
+    overflow: hidden;
+    border-style: outset;
+}
+#productpic{
+    position: relative;
+    width: 80%;
+    height:50%;
+    padding:5%;
+    border-radius: 40%;
+    margin: 5%;
+    
+   
+}
+#besticon{
+    position: absolute;
+   
+
+}
+#regi,#login{
+    margin: 0 auto;
+    width:400px;
+    padding: 20px;
+    margin: 40px;
+    font-family: cursive;
+    color: rgb(206, 103, 20);
+    border-style: outset;
+
+}
+#regi input,#login input{
+    width: 100%;
+    font-family: cursive;
+    font-weight:bold;
+}
+#regi label,#login label{
+    font-weight: bold;
+
+}
+#regi p, #login p{    
+    font-size: 25px;
+    font-family: cursive;
+
+}
+.button{
+    background-color:  rgb(52, 52, 70);
+    width: 100%;
+    margin-top: 5%;
+    color: white;
+    font-size: 15px;
+
+}
+
+
 

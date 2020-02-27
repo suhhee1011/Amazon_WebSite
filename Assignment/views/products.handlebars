@@ -1,26 +1,30 @@
 <div id="productsPage">
     <div id="sidebar">
         <ul>
-            <li><a href="">Automotive</a></li>
-            <li><a href="">Arts & Crafts</a></li>
-            <li><a href="">Beauty and personal care</a></li>
-            <li><a href="">Computers</a></li>
-            <li><a href="">Electronics</a></li>
-            <li><a href="">Woman's Fashion</a></li>
-            <li><a href="">Men's Fashion</a></li>
-            <li><a href="">Home and Kitchen</a></li>
-            <li><a href="">Toys and Games</a></li>
+            <li><a href="/products">Automotive</a></li>
+            <li><a href="/products">Arts & Crafts</a></li>
+            <li><a href="/products">Beauty and personal care</a></li>
+            <li><a href="/products">Computers</a></li>
+            <li><a href="/products">Electronics</a></li>
+            <li><a href="/products">Woman's Fashion</a></li>
+            <li><a href="/products">Men's Fashion</a></li>
+            <li><a href="/products">Home and Kitchen</a></li>
+            <li><a href="/products">Toys and Games</a></li>
         </ul>
     </div>
     <div id="products">
-        <div id="eachproducts">
+        
             {{#each productPic}}
-                <img src="{{this.source}}" ali="{{this.name}}">
-                <p>{{this.name}}->${{this.price}}</p>
+            <div id="eachproducts">
+                {{#if this.Bestseller}}{
+                <img id="besticon"src ="best-seller.PNG" ali="bestseller" width="40" height="40">
+                {{/if}}
+                <img id="productpic" src="{{this.source}}" ali="{{this.name}}">
+                <p>{{this.name}}<br>->${{this.price}}</p>
                 <p>Category: {{this.category}}</p>
-                <p>Bestseller: {{this.Bestseller}}</p>
-            
+                
+            </div>
             {{/each}}
-        </div>
+        
     </div>
 </div>
