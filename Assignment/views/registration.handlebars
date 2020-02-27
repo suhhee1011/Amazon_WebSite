@@ -1,4 +1,4 @@
-<p>{{error}}</p>
+
 <p>{{sucess}}</p>
 <form id="regi" action="/registration" method= "POST" >
 <fieldset>
@@ -6,12 +6,16 @@
     <p>Create an account</p>
     <label for="name">Please enter your Name</label><br>
     <input type="text" id="name" name="name"> <br>
+    <div id ="Error">{{this.nameError}}</div>
     <label for="email">Please enter your mail</label><br>
     <input type="text" id ="email" name="email"> <br>
+       <div id ="Error">{{this.emailError}}</div>
     <label for="password">Please enter your Password</label><br>
      <input type="password" name ="password"> <br>
+    <div id ="Error">{{this.passwordError}}</div>
     <label for="passwordAgain">Please enter your Password Again</label><br>
      <input type="password" name ="passwordAgain"> <br>
+   <div id ="Error">{{this.passwordAgainError}}</div>
     <input class="button" type="submit" value="Register">
 </fieldset>
     <p>Already Have an account?<a href ="/login" id = "signin">Sign in</a></p>

@@ -41,11 +41,18 @@ app.get("/registration",(req,res)=>{
 });
 
 app.post("/registration",(req,res)=>{
-    let error="";
+    let errors =[];
     let successMessage="";
+    let errorcheck =true;
+
+    if(`${req.body.name}`.length<=0){
+       errors.push({passwordError:"Please enter name"});
+
+    }
     if(`${req.body.password}`!=`${req.body.passwordAgain}`){
-        error="password is not matched";
-    }else{
+        errors.push({PasswordAgainerror:"password is not matched"});
+    }
+    if(errorcheck =true){
     userInfo.push({name:`${req.body.name}`,email:`${req.body.email}`,password:`${req.body.password}`});
         successMessage ="You are successfully create an Account";
     }
@@ -56,12 +63,27 @@ app.post("/registration",(req,res)=>{
         success: successMessage
     });
 
+
 });
 app.get("/login",(req,res)=>{
+    let errors=[];
+    if(`${req.body.email}`.length<=0){
+        errors.push({emailError:"Please enter password"});
+ 
+     }
+     if(`${req.body.password}`.length<=0){
+        errors.push({passwordError:"Please enter password"});
+ 
+     }
+     if(errors.length>0){
     res.render("login",{
         title: "login",
-        headingInfo:"login"
+        headingInfo:"login",
+        errormessage:errors,
+        email:req.body.email,
+        password:req.body.password
     });
+}
 
 });
 
