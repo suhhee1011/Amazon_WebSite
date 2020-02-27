@@ -1,13 +1,19 @@
-<form id ="login"action="/registration" method= "POST">
+<form id ="login"action="/login" method= "POST">
+{{Message}}
 <fieldset>
     <legend><img src="seophoelogogracrop.PNG"></legend>
     <p>Sign in to your account</p>
     <label for="email">Please enter your email</label>
     <input type="email" id ="email" name="email" value ={{email}}> <br>
+     {{#each errormessage}}
     <div id ="Error">{{this.emailError}}</div>
+    {{/each}}
+
     <label for="password">Please enter your Password</label>
     <input type="password" name ="password" value ={{password}}>
-    <div id ="Error">{{this.emailError}}</div>
+    {{#each errormessage}}
+    <div id ="Error">{{this.passwordError}}</div>
+    {{/each}}
     <input class="button" type="submit" value="Login">
 </fieldset>
 <p>You don't have an account?<a href ="/registration" id = "signup">Sign up</a></p>

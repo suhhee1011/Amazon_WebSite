@@ -44,31 +44,73 @@ app.post("/registration",(req,res)=>{
     let errors =[];
     let successMessage="";
     let errorcheck =true;
-
+    
     if(`${req.body.name}`.length<=0){
-       errors.push({passwordError:"Please enter name"});
+        errors.push({nameError:"Please enter name"});
+ 
+     }
+    if(`${req.body.email}`.length<=0){
+        errors.push({emailError:"Please enter email"});
+ 
+    }
+    if(`${req.body.password}`.length<=0){
+        errors.push({passwordError:"Please enter password"});
+ 
+    }else if(!/^[a-z0-9]{6,12}$/.test(`${req.body.password}`)){
+        errors.push({passwordError:"Please enter passwored between 6 to 12 characters and only with lower cases and numbers"});
+    }
 
+    if(`${req.body.passwordAgain}`.length<=0){
+        errors.push({passwordAgainError:"Please enter password again"});
+ 
+    }else if(`${req.body.password}`!=`${req.body.passwordAgain}`){
+        errors.push({passwordAgainerror:"password is not matched"});
     }
-    if(`${req.body.password}`!=`${req.body.passwordAgain}`){
-        errors.push({PasswordAgainerror:"password is not matched"});
-    }
-    if(errorcheck =true){
-    userInfo.push({name:`${req.body.name}`,email:`${req.body.email}`,password:`${req.body.password}`});
-        successMessage ="You are successfully create an Account";
-    }
+    if(errors.length>0){
+        res.render("registration",{
+            title: "registration",
+            headingInfo:"registration" ,
+            errormessage: errors,
+            name:req.body.name,
+            email:req.body.email,
+            password:req.body.password,
+            passwordagarin:req.body.passwordAgain
+
+        });
+    }else{
+   // userInfo.push({name:`${req.body.name}`,email:`${req.body.email}`,password:`${req.body.password}`});
+    
+    
     res.render("registration",{
         title: "registration",
-        headingInfo:"registration" ,
-        errors: error,    
-        success: successMessage
+        headingInfo:"registration",
+        Message: "You are successfully create an Account"
     });
+    }
+
 
 
 });
 app.get("/login",(req,res)=>{
     let errors=[];
-    if(`${req.body.email}`.length<=0){
-        errors.push({emailError:"Please enter password"});
+    
+    
+        res.render("login",{
+            title: "login",
+            headingInfo:"login"
+        });
+
+    
+
+
+});
+
+app.post("/login",(req,res)=>{
+    const errors=[];
+    let message="";
+    let loginSuccess = false;
+    if(`${req.body.email}`==""){
+        errors.push({emailError:"Please enter email"});
  
      }
      if(`${req.body.password}`.length<=0){
@@ -76,20 +118,21 @@ app.get("/login",(req,res)=>{
  
      }
      if(errors.length>0){
-    res.render("login",{
-        title: "login",
-        headingInfo:"login",
-        errormessage:errors,
-        email:req.body.email,
-        password:req.body.password
-    });
-}
-
-});
-
-app.post("/login",(req,res)=>{
-    let message="";
-    let loginSuccess = false;
+        res.render("login",{
+            title: "login",
+            errormessage:errors,
+            email:req.body.email,
+            password:req.body.password
+        });
+    }
+    else{
+        res.render("login",{
+            title: "login",
+            headingInfo:"login",
+            Message: "Login Success"
+        });
+    }
+    /*
     for(let i =0;i<userInfo.size;i++){
         if(`${req.body.password}`==userInfo[i]){
             message= "Login Success"
@@ -101,12 +144,8 @@ app.post("/login",(req,res)=>{
     if(loginSuccess ==false){
         message="Try Again, Or Create an New accont"
     }
-    
-    res.render("login",{
-        title: "login",
-        headingInfo:"login",
-        Message: message
-    });
+   */ 
+   
 
 });
 
