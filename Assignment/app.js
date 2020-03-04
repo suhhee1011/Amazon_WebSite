@@ -1,7 +1,7 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
-const productModel = require("./model/productDB");
+const productModel = require("./model/productDB.js");
 require('dotenv').config({path:"./config/keys.env"});
 
 const app = express();
