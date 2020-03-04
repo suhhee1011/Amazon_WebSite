@@ -1,24 +1,19 @@
-html,body{
-
-    margin:0;
-    padding:0;
-    box-sizing: border-box;
-    background-color: rgb(223, 204, 204);
-
-}
-p{
+body{
+    background-color: rgb(223,204,204);
     text-align: center;
-    font-family: cursive;
+    font-family: font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-
-
+/*navigation bar*/
 nav ul{
-    max-height: 100%;
-    max-width: 100%;
     list-style-type: none;
     margin:0;
+    padding: 0;
     overflow: hidden;
     background-color: rgb(52, 52, 70);
+    top:0;
+    width: 100%;
+    font-size:1.5vw;
+    font-weight: bold;
 }
 nav li {
     float:left;
@@ -27,19 +22,22 @@ nav li {
 nav li a {
     display: block;
     color: white;
-    text-align: center;
-    padding: 50px 50px;
+    padding: 5vw 3vw;
     text-decoration: none;
+    
 
-}
-nav li img{
-    width: 100%;
-    height:40%;
 }
 nav li a:hover{
     background-color: #111;
 }
+nav img{
+    width:15vw;
+    height:5vw;
+    padding: 3vw 3vw;
+    
 
+}
+/*sidebar*/
 #sidebar ul {
     list-style-type: none;
     margin: 50px 0 0 0;
@@ -47,6 +45,7 @@ nav li a:hover{
     max-width: 90%;
     background-color: #f1f1f1;
     border-radius: 10%;
+    font-size:1.5vw;
   }
   
   #sidebar li a {
@@ -55,22 +54,21 @@ nav li a:hover{
     padding: 8px 16px;
     text-decoration: none;
   }
-  
-
   #sidebar li a:hover {
     background-color: #555;
     color: white;
   }
-
   #categories,#bestseller{
     
     background-color: whitesmoke;
-    text-align: center;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     border-radius: 10%;
   
 }
+#promo img{
+    width:100%;
+    height:30%;
 
+}
 #bestsell{
     
     width: 90%;
@@ -81,11 +79,8 @@ nav li a:hover{
     border-radius: 20%;
    
 }
-
-
-
 p.ctitle{
-    font-size: 30px;
+    font-size: 3vw;
 
 }
 #categorydiv, #bestsellerdiv {
@@ -99,10 +94,10 @@ p.ctitle{
 }
 #eachcategory{
     width: 90%;
-    height:100%;
-    padding: 5%;
-    margin: 0% 2%;
-  
+    height:90%;
+    padding: 5% 0%;
+    margin: 0% 0%;
+   font-size: 1.5vw;
     
   
     
@@ -110,7 +105,7 @@ p.ctitle{
 }
 #eachcategory img{
     width: 90%;
-    height:50%;
+    height:80%;
     padding: 5%;
     margin: 0% 2%;
     border-style: outset;
@@ -123,14 +118,21 @@ p.ctitle{
 
 #eachbestsell{
     width: 90%;
-    height:100%;
+    height:90%;
     padding: 5%;
     margin: 0% 2%;
   
     
 
 }
+#eachbestsell img{
+    width: 90%;
+        height:90%;
+        padding: 5% 0%;
+        margin: 0% 0%;
+       font-size: 1.5vw;
 
+}
 #productsPage{
     display: grid;
     grid-template-columns: 1fr 3fr;
@@ -145,10 +147,7 @@ p.ctitle{
     grid-template-columns: 1fr 1fr 1fr;
     width: 100%;
     align-content: space-evenly;
-    font-size: 1em;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    
-
 }
 
 #eachproducts {
@@ -158,7 +157,7 @@ p.ctitle{
     margin: 5% 5%;
     border-radius: 20%;
     background-color: rgb(197, 168, 168);
-    font-size: 100%;
+    font-size: 1.5vw;
     overflow: hidden;
     border-style: outset;
 }
@@ -179,36 +178,93 @@ p.ctitle{
 }
 #regi,#login{
     margin: 0 auto;
-    width:400px;
-    padding: 20px;
-    margin: 40px;
-    font-family: cursive;
+    width:50vw;
+    padding: 2vw 10vw;
     color: rgb(206, 103, 20);
     border-style: outset;
 
 }
 #regi input,#login input{
-    width: 100%;
+    width: 15vw;
+    height: 1.5vw;
     font-family: cursive;
     font-weight:bold;
 }
+#regi img,#login img{
+   
+ width: 30vw;
+ height:8vw;
+
+
+
+}
 #regi label,#login label{
     font-weight: bold;
+    font-size: 1vw;
 
 }
 #regi p, #login p{    
-    font-size: 25px;
+    font-size: 1.5vw;
     font-family: cursive;
 
 }
-.button{
+input#button{
     background-color:  rgb(52, 52, 70);
-    width: 100%;
     margin-top: 5%;
     color: white;
-    font-size: 15px;
+    font-size: 1.5vw;
+    height:3vw;
 
 }
 
 
+/* Small devices (phones, 576px and up)*/
+@media (max-width: 767.98px) {
+    #promo,#sidebar{
+    display: none;   
+    }
+   
+    #categorydiv, #bestsellerdiv {
+        grid-template-columns: 1fr 1fr;
+    }
+    #eachcategory{
+        width: 90%;
+        height:80%;
+        padding: 5% 0%;
+        margin: 0% 0%;
+       font-size: 2vw;
+    
+    }
+    #productsPage{
+        grid-template-columns: 1fr;
+    }
+    #products{
+    
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+}
+
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) and (max-width: 998.98px) { 
+    #promo,#sidebar{
+        display: none;   
+        }
+    nav img{
+        width:15vw;
+        height:5vw;
+        font-size:1.5vw;
+    }
+    #productsPage{
+        grid-template-columns: 1fr;
+    }
+    #products{
+    
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
 

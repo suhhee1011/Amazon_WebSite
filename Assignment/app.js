@@ -2,6 +2,7 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 const productModel = require("./model/productDB");
+require('dotenv').config({path:"./config/keys.env"});
 
 const app = express();
 
@@ -9,6 +10,7 @@ app.engine("handlebars",exphbs());
 app.set("view engine", "handlebars");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static("public"));
+
 userInfo=[];
 
 app.get("/",(req,res)=>{
@@ -41,6 +43,7 @@ app.get("/registration",(req,res)=>{
 });
 
 app.post("/registration",(req,res)=>{
+    const {name,email}= req.body;
     let errors =[];
     let successMessage="";
     let errorcheck =true;
@@ -48,7 +51,9 @@ app.post("/registration",(req,res)=>{
     if(`${req.body.name}`.length<=0){
         errors.push({nameError:"Please enter name"});
  
-     }
+     }else if(!/^[a-zA-Z\s]{2,}$/.test(`${req.body.name}`)){
+        errors.push({nameError:"Please enter the right name only with number"});
+    }
     if(`${req.body.email}`.length<=0){
         errors.push({emailError:"Please enter email"});
  
@@ -79,13 +84,36 @@ app.post("/registration",(req,res)=>{
         });
     }else{
    // userInfo.push({name:`${req.body.name}`,email:`${req.body.email}`,password:`${req.body.password}`});
+       // using Twilio SendGrid's v3 Node.js Library
+// https://github.com/sendgrid/sendgrid-nodejs
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
+const msg = {
+  to: `${email}`,
+  from: `registration@seophoe.com`,
+  subject: 'Thank you for choose us!',
+  text: 'Your account is successfully created. Thank you',
+  html: `Name: ${name}
+         email: ${email}
+         `,
+         
+};
+sgMail.send(msg)
+.then(()=>{
+    console.log("email sent");
+
+})
+.catch(err=>{
+    console.log(`Error ${err}`);
+
+})
     
-    
-    res.render("registration",{
-        title: "registration",
-        headingInfo:"registration",
-        Message: "You are successfully create an Account"
-    });
+res.render("dashboard",{
+    title: "dashboard",
+    headingInfo:"dashboard",
+    email: req.body.email,
+    name: req.body.name
+});
     }
 
 
@@ -149,7 +177,7 @@ app.post("/login",(req,res)=>{
 
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT;
 app.listen(PORT,()=>{
     console.log("Web server is running");
 });
