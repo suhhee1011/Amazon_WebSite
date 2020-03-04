@@ -52,7 +52,7 @@ app.post("/registration",(req,res)=>{
         errors.push({nameError:"Please enter name"});
  
      }else if(!/^[a-zA-Z\s]{2,}$/.test(`${req.body.name}`)){
-        errors.push({nameError:"Please enter the right name only with number"});
+        errors.push({nameError:"Please enter the right name only with lower case letter"});
     }
     if(`${req.body.email}`.length<=0){
         errors.push({emailError:"Please enter email"});
@@ -65,10 +65,7 @@ app.post("/registration",(req,res)=>{
         errors.push({passwordError:"Please enter passwored between 6 to 12 characters and only with lower cases and numbers"});
     }
 
-    if(`${req.body.passwordAgain}`.length<=0){
-        errors.push({passwordAgainError:"Please enter password again"});
- 
-    }else if(`${req.body.password}`!=`${req.body.passwordAgain}`){
+    if(`${req.body.password}`!=`${req.body.passwordAgain}`){
         errors.push({passwordAgainerror:"password is not matched"});
     }
     if(errors.length>0){
