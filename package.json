@@ -1,27 +1,19 @@
 {
-  "name": "WEB322_Assignment",
+  "name": "Assignment",
   "version": "1.0.0",
+  "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node ./Assignment/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^6.5.3",
     "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0"
-  },
-  "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/suhhee1011/Amazon_WebSite.git"
-  },
-  "bugs": {
-    "url": "https://github.com/suhhee1011/Amazon_WebSite/issues"
-  },
-  "homepage": "https://github.com/suhhee1011/Amazon_WebSite#readme",
-  "description": ""
+  }
 }
