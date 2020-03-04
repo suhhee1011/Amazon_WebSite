@@ -84,7 +84,7 @@ app.post("/registration",(req,res)=>{
         });
     }else{
    // userInfo.push({name:`${req.body.name}`,email:`${req.body.email}`,password:`${req.body.password}`});
-       // using Twilio SendGrid's v3 Node.js Library
+// using Twilio SendGrid's v3 Node.js Library
 // https://github.com/sendgrid/sendgrid-nodejs
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
@@ -101,6 +101,12 @@ const msg = {
 sgMail.send(msg)
 .then(()=>{
     console.log("email sent");
+    res.render("dashboard",{
+        title: "dashboard",
+        headingInfo:"dashboard",
+        email: req.body.email,
+        name: req.body.name
+    });
 
 })
 .catch(err=>{
@@ -108,13 +114,7 @@ sgMail.send(msg)
 
 })
     
-res.render("dashboard",{
-    title: "dashboard",
-    headingInfo:"dashboard",
-    email: req.body.email,
-    name: req.body.name
-});
-    }
+ }
 
 
 
