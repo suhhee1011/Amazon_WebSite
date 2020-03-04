@@ -52,13 +52,13 @@ app.post("/registration",(req,res)=>{
         errors.push({firstnameError:"Please enter first name"});
  
      }else if(!/^[a-zA-Z\s]{2,}$/.test(`${req.body.firstname}`)){
-        errors.push({firstnameError:"Please enter the first name only with lower case letter"});
+        errors.push({firstnameError:"Please enter the first name only with letter"});
     }
     if(`${req.body.lastname}`.length<=0){
         errors.push({lastnameError:"Please enter last name"});
  
      }else if(!/^[a-zA-Z\s]{2,}$/.test(`${req.body.lastname}`)){
-        errors.push({lastnameError:"Please enter the last name only with lower case letter"});
+        errors.push({lastnameError:"Please enter the last name only with letter"});
     }
     if(`${req.body.email}`.length<=0){
         errors.push({emailError:"Please enter email"});
