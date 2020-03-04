@@ -2,13 +2,13 @@ const productDB = {
 
     fakeDB: [],
     init() {
-        this.fakeDB.push({ name: "Carhartt Men's Acrylic Watch Hat", price: 16.99, source: "Carhartt Men's Acrylic Watch Hat.png", category: "Men's Clothes", Bestseller: true });
-        this.fakeDB.push({ name: "2-pack Tech Stretch Racerback Tank Top", source: "top.png", price: 24, category: "Woman's Clothes", Bestseller: true});
-        this.fakeDB.push({ name: "ALONG FIT Yoga Pants with Side Pockets", price: 25.95, source: "leggings.png", category: "Woman's Clothes", Bestseller: true });
-        this.fakeDB.push({ name: "20% Vitamin C Serum - 60 ml ", price: 23.69, source: "vitaminc.png", category: "Beauty and personal care", Bestseller: true });
-        this.fakeDB.push({ name: "Smart speaker with Alexa", price: 99.99, source: "speaker.png", category: "Home and Kitchen", Bestseller: false });
-        this.fakeDB.push({ name: "Wrap Window Tint Tools Kit", price: 22.99, source: "cartoolkit.png", category: "Automotive", Bestseller: false });
-        this.fakeDB.push({ name: "UNO Card Game", price: 6.93, source: "uno.png", category: "Toys and Games", Bestseller: true });
+        this.fakeDB.push({ name: "Carhartt Men's Acrylic Watch Hat", price: 16.99, source: "Carhartt Men's Acrylic Watch Hat.PNG", category: "Men's Clothes", Bestseller: true });
+        this.fakeDB.push({ name: "2-pack Tech Stretch Racerback Tank Top", source: "top.PNG", price: 24, category: "Woman's Clothes", Bestseller: true});
+        this.fakeDB.push({ name: "ALONG FIT Yoga Pants with Side Pockets", price: 25.95, source: "leggings.PNG", category: "Woman's Clothes", Bestseller: true });
+        this.fakeDB.push({ name: "20% Vitamin C Serum - 60 ml ", price: 23.69, source: "vitaminc.PNG", category: "Beauty and personal care", Bestseller: true });
+        this.fakeDB.push({ name: "Smart speaker with Alexa", price: 99.99, source: "speaker.PNG", category: "Home and Kitchen", Bestseller: false });
+        this.fakeDB.push({ name: "Wrap Window Tint Tools Kit", price: 22.99, source: "cartoolkit.PNG", category: "Automotive", Bestseller: false });
+        this.fakeDB.push({ name: "UNO Card Game", price: 6.93, source: "uno.PNG", category: "Toys and Games", Bestseller: true });
 
     },
     getAllProducts() {
