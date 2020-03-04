@@ -43,16 +43,22 @@ app.get("/registration",(req,res)=>{
 });
 
 app.post("/registration",(req,res)=>{
-    const {name,email}= req.body;
+    const {firstname,lastname,email}= req.body;
     let errors =[];
     let successMessage="";
     let errorcheck =true;
     
-    if(`${req.body.name}`.length<=0){
-        errors.push({nameError:"Please enter name"});
+    if(`${req.body.firstname}`.length<=0){
+        errors.push({firstnameError:"Please enter first name"});
  
-     }else if(!/^[a-zA-Z\s]{2,}$/.test(`${req.body.name}`)){
-        errors.push({nameError:"Please enter the right name only with lower case letter"});
+     }else if(!/^[a-zA-Z\s]{2,}$/.test(`${req.body.firstname}`)){
+        errors.push({firstnameError:"Please enter the first name only with lower case letter"});
+    }
+    if(`${req.body.lastname}`.length<=0){
+        errors.push({lastnameError:"Please enter last name"});
+ 
+     }else if(!/^[a-zA-Z\s]{2,}$/.test(`${req.body.lastname}`)){
+        errors.push({lastnameError:"Please enter the last name only with lower case letter"});
     }
     if(`${req.body.email}`.length<=0){
         errors.push({emailError:"Please enter email"});
@@ -73,7 +79,8 @@ app.post("/registration",(req,res)=>{
             title: "registration",
             headingInfo:"registration" ,
             errormessage: errors,
-            name:req.body.name,
+            firstname:req.body.firstname,
+            lastname:req.body.lastname,
             email:req.body.email,
             password:req.body.password,
             passwordagarin:req.body.passwordAgain
@@ -90,7 +97,7 @@ const msg = {
   from: `registration@seophoe.com`,
   subject: 'Thank you for choose us!',
   text: 'Your account is successfully created. Thank you',
-  html: `Name: ${name}
+  html: `Name: ${firstname} ${lastname}
          email: ${email}
          `,
          
@@ -102,8 +109,9 @@ sgMail.send(msg)
         title: "dashboard",
         headingInfo:"dashboard",
         email: req.body.email,
-        name: req.body.name
-    });
+        firstname: req.body.firstname,
+        lastname: req.body.lastname
+       });
 
 })
 .catch(err=>{

@@ -6,10 +6,16 @@
 <fieldset>
     <legend><img src="seophoelogogracrop.png"></legend>
     <p>Create an account</p>
-    <label for="name">Please enter your Name</label><br>
-    <input type="text" id="name" name="name" value='{{name}}'> <br>
+    <label for="firstname">Please enter your First Name</label><br>
+    <input type="text" id="firstname" name="firstname" value='{{firstname}}'> <br>
     {{#each errormessage}}
-    <div id ="Error">{{this.nameError}}</div>
+    <div id ="Error">{{this.firstnameError}}</div>
+    {{/each}}
+
+<label for="lastname">Please enter your First Name</label><br>
+    <input type="text" id="lastname" name="lastname" value='{{lastname}}'> <br>
+    {{#each errormessage}}
+    <div id ="Error">{{this.lastnameError}}</div>
     {{/each}}
 
     <label for="email">Please enter your mail</label><br>
