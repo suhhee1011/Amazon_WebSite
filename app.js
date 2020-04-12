@@ -2,7 +2,7 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
-
+const session = require('express-session');
 require('dotenv').config({path:"./config/keys.env"});
 
 const app = express();
@@ -19,12 +19,19 @@ app.use(express.static("public"));
 const generalController = require("./controllers/general");
 const productController = require("./controllers/product");
 
-//map each controller to the app object
 
-/*
-    localhost:3000/contact-us
-    localhost:3000/product
-*/
+app.use(session({
+    secret: `${process.env.SECRET_KEY}`,
+    resave: false,
+    saveUninitialized: true
+  }))
+  app.use((req,res,next)=>{
+    res.locals.user = req.session.userInfo;
+    next();
+
+})
+
+//map each controller to the app object
 app.use("/",generalController);
 app.use("/product",productController);
 

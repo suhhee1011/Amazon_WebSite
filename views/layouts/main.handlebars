@@ -15,8 +15,12 @@
             <li><img src="seophoelogocrop.png" ali="seophoelogo"></li> 
             <li><a href="/">HOME</a></li>
             <li><a href="/product">PRODUCTS</a></li>
+            {{#if user}}
+            <li><a href="/logout">LOGOUT</a></li>
+            {{else}}
+             <li><a href="/login">LOGIN</a></li>
             <li><a href="/registration">REGISTRATION</a></li>
-            <li><a href="/login">LOGIN</a></li>
+            {{/if}}
             </ul>
         </nav>
       

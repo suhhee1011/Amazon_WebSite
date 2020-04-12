@@ -17,6 +17,11 @@ const mongoose = require('mongoose');
     password: { 
         type:String,
         required: true},
+    type:
+    {
+        type:String,
+        default:"User"
+    }
     
   });
   clientSchema.pre("save",function(next){

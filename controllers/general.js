@@ -1,7 +1,10 @@
 const express = require('express')
 const router = express.Router();
 const clientModel = require("../model/client");
-userInfo=[];
+const bcrypt = require("bcryptjs");
+const isAuthenticated = require("../middleware/auth");
+const dashBoardLoader = require("../middleware/authorization");
+
 
 //load product model
 const productModel = require("../model/product.js");
@@ -25,7 +28,7 @@ router.get("/registration",(req,res)=>{
 
 });
 router.get("/login",(req,res)=>{
-    let errors=[];
+ 
     
     
         res.render("general/login",{
@@ -161,46 +164,76 @@ sgMail.send(msg)
 
 
 router.post("/login",(req,res)=>{
-    const errors=[];
-    let message="";
-    let loginSuccess = false;
-    if(`${req.body.email}`==""){
-        errors.push({emailError:"Please enter email"});
- 
-     }
-     if(`${req.body.password}`.length<=0){
-        errors.push({passwordError:"Please enter password"});
- 
-     }
-     if(errors.length>0){
-        res.render("general/login",{
-            title: "login",
-            errormessage:errors,
-            email:req.body.email,
-            password:req.body.password
-        });
-    }
-    else{
-        res.render("general/login",{
-            title: "login",
-            headingInfo:"login",
-            Message: "Login Success"
-        });
-    }
-    /*
-    for(let i =0;i<userInfo.size;i++){
-        if(`${req.body.password}`==userInfo[i]){
-            message= "Login Success"
-            loginSuccess = true;
-            break;
+    clientModel.findOne({email:req.body.email})
+    .then(user=>{
+
+        const errors= [];
+
+        //email not found
+        if(user==null)
+        {   
+             errors.push({passwordError:"Sorry, your email and/or password incorrect "});
+            res.render("general/login",{
+                errormessage:errors
+            });
+                
         }
-      
-    }
-    if(loginSuccess ==false){
-        message="Try Again, Or Create an New accont"
-    }
-   */ 
+
+        //email is found
+        else
+        {
+           
+            bcrypt.compare(req.body.password, user.password)
+            .then(isMatched=>{
+                
+                if(isMatched)
+                {
+                    //cretae our sessoin
+                    req.session.userInfo = user;
+                   
+                 res.redirect("/profile");
+        
+                }
+
+                else
+                {
+                    
+                    errors.push({passwordError:"Sorry, your email and/or password incorrect "});
+                   
+                    res.render("general/login",{
+                        errormessage:errors
+                    })
+                }
+
+            })
+            .catch(err=>console.log(`Error ${err}`));
+        }
+
+
+    })
+    .catch(err=>console.log(`Error ${err}`));
+   
    
 
 });
+router.get("/logout",(req,res)=>{
+    req.session.destroy();
+    res.redirect("general/login"); //redirect
+
+});
+router.get("/profile",isAuthenticated,dashBoardLoader);
+
+
+
+
+router.get("/dashboard",(req,res)=>{
+    res.render("general/dashboard",{
+        title: "dashboard",
+        headingInfo:"dashboard",
+        email: req.body.email,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname
+       });
+
+})
 module.exports=router;
