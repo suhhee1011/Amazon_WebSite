@@ -1,0 +1,42 @@
+<form id ="productedit" method="POST" action="/update/{{_id}}?method=PUT" enctype="multipart/form-data"> 
+
+<fieldset>
+    <legend><img src="/pic/seophoelogogracrop.png"></legend>
+    <p>Edit an product</p>
+        <label>Please enter the name of the product</label><br>
+        <input type="text" name="name" id="name" value="{{name}}" > <br><br>
+
+         <label>Please enter the price of the product</label><br>
+        <input type="text" name="price" id="price" value="{{price}}" > <br><br>
+
+
+        <label>Please enter the description of the product</label><br>
+        <textarea id="description" name="description">{{description}}</textarea><br><br>
+
+        <label>Please enter the category of the product</label><br>
+        <input type="text"  id="category" name="category" value="{{category}}" > <br><br>
+
+        <label>Please enter the quantity of the product</label><br>
+        <input type="text"  id="quantity" name="quantity" value="{{quantity}}" > <br><br>
+
+        
+        <label>Please choose bestseller or not</label> 
+        <select name="bestseller">
+            {{#compare bestseller true}}
+            <option value="true" selected="selected">BestSeller</option>
+            <option value="false" >Not BestSeller</option>
+            {{/compare}}
+            {{#compare bestseller falses}}
+             <option value="true" >BestSeller</option>
+            <option value="false" selected="selected" >Not BestSeller</option>
+            {{/compare}}
+        </select>
+        <br><br>
+
+         <label>Upload a picture</label>
+        <input type="file" name="picture" id="picture" value = "{{picture}}"> <br><br>
+      
+
+        <input id="button" type="submit" value="productedit">
+    </fieldset>
+    </form>

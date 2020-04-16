@@ -1,0 +1,48 @@
+<form id="productadd" action="/productadd" method="POST" enctype="multipart/form-data">
+<!--enctype is needed for file upload-->
+
+<fieldset>
+    <legend><img src="pic/seophoelogogracrop.png"></legend>
+    <p>Add an product</p>
+    <label for="name">Please enter the name of the product</label><br>
+    <input type="text" id="name" name="name" value='{{name}}'> <br>
+    {{#each errormessage}}
+    <div id ="Error">{{this.nameError}}</div>
+    {{/each}}
+
+<label for=" price">Please enter the price</label><br>
+    <input type="text" id="price" name="price" value='{{price}}'> <br>
+    {{#each errormessage}}
+    <div id ="Error">{{this.priceError}}</div>
+    {{/each}}
+
+    <label for="description">Please enter the description</label><br>
+    <textarea id="description" name="description">{{description}}</textarea><br><br>
+      {{#each errormessage}}
+       <div id ="Error">{{this.descriptionError}}</div>
+       {{/each}}
+
+    <label for="category">Please enter the category</label><br>
+     <input type="text" name ="category" value={{category}}> <br>
+       {{#each errormessage}}
+    <div id ="Error">{{this.categoryError}}</div>
+    {{/each}}
+
+    <label for="quantity">Please enter the quantity</label><br>
+     <input type="text" name ="quantity" value={{quantity}}> <br>
+     {{#each errormessage}}
+   <div id ="Error">{{this.quantityError}}</div>
+   {{/each}}
+
+   <label>Please choose bestseller or not</label>
+        <select name="bestseller">
+            <option value="true">BestSeller</option>
+            <option value="false">Not BestSeller</option>
+        </select><br>
+
+    <label>Please upload a picture</label>
+        <input type="file" name="picture" id="picture"> <br><br>
+    <input id="button" type="submit" value="productadd">
+    </fieldset>
+    </form>
+    

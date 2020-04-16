@@ -1,8 +1,8 @@
-const dashBoardLoader = (req,res)=>{
+const dashBoardLoader = (req,res,next)=>{
     if(req.session.userInfo.type =="Admin"){
-       res.render("general/admin-profile");
+       next();
     }else{
-        res.render("general/userdashboard");
+        res.render("userdashboard");
 
     }
 

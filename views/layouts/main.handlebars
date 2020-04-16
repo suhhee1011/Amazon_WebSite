@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>{{title}}</title>
 </head>
 <body>
@@ -12,10 +12,11 @@
         
         <nav>
             <ul>
-            <li><img src="seophoelogocrop.png" ali="seophoelogo"></li> 
+            <li><img src="/pic/seophoelogocrop.png" ali="seophoelogo"></li> 
             <li><a href="/">HOME</a></li>
             <li><a href="/product">PRODUCTS</a></li>
             {{#if user}}
+            <li><a href="/profile">PROFILE</a></li>
             <li><a href="/logout">LOGOUT</a></li>
             {{else}}
              <li><a href="/login">LOGIN</a></li>
@@ -34,8 +35,13 @@
             <ul>
             <li><a href="/">HOME</a></li>
             <li><a href="/product">PRODUCTS</a></li>
+            {{#if user}}
+            <li><a href="/profile">PROFILE</a></li>
+            <li><a href="/logout">LOGOUT</a></li>
+            {{else}}
+             <li><a href="/login">LOGIN</a></li>
             <li><a href="/registration">REGISTRATION</a></li>
-            <li><a href="/login">LOGIN</a></li>
+            {{/if}}
             <li><a href="www.facebook.com">FACE BOOK</a></li>
             <li><a href="www.instagram.com">INSTAGRAM</a></li>
              <p>&copy Suhhee Kim</p>

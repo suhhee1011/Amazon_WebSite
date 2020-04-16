@@ -1,0 +1,16 @@
+<table style="width:50%" border="1">
+<tr>
+    <th>Name</th>
+    <th>Price</th> 
+    <th>Quantity</th>
+</tr>
+{{#each data}}
+<tr>
+    <td>{{this.name}}</td>
+    <td>{{this.price}}</td>
+    <td>{{this.quantity}}</td>
+    <td><a href="/productedit/{{this.id}}">UPDATE PRODUCT</a></td>
+    <td><a href="/delete/{{this.id}}?method=DELETE">DELETE PRODUCT</a></td>
+</tr> 
+{{/each}}
+</table>

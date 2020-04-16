@@ -1,44 +1,35 @@
-const express = require('express')
+const express = require('express');
 const router = express.Router();
 const clientModel = require("../model/client");
+const productModel = require("../model/product");
 const bcrypt = require("bcryptjs");
 const isAuthenticated = require("../middleware/auth");
 const dashBoardLoader = require("../middleware/authorization");
 
 
-//load product model
-const productModel = require("../model/product.js");
+
 router.get("/",(req,res)=>{
- 
-    res.render("general/home",{
+    var best=[];
+    res.render("home",{
         title: "Home",
         headingInfo:"Home Page",
-        productCategory: productModel.getCategories(),
-        bestSell:productModel.getBestSellers()
-    }); 
-
+        productCategory: productModel.cate,
+        bestSell: best 
+    });
 });
+ 
+
 router.get("/registration",(req,res)=>{
-    res.render("general/registration",{
+    res.render("registration",{
         title: "registration",
         headingInfo:"registration",
-
-       
     });
-
 });
 router.get("/login",(req,res)=>{
- 
-    
-    
-        res.render("general/login",{
+        res.render("login",{
             title: "login",
             headingInfo:"login"
         });
-
-    
-
-
 });
 router.post("/registration",(req,res)=>{
     const {firstname,lastname,email}= req.body;
@@ -75,7 +66,7 @@ router.post("/registration",(req,res)=>{
         errors.push({passwordAgainerror:"password is not matched"});
     }
     if(errors.length>0){
-        res.render("general/registration",{
+        res.render("/registration",{
             title: "registration",
             headingInfo:"registration" ,
             errormessage: errors,
@@ -93,7 +84,7 @@ router.post("/registration",(req,res)=>{
            //Show error
             if(user){
             errors.push({emailError:"please use other email"});
-            res.render("general/registration",{
+            res.render("/registration",{
                 title: "registration",
                 headingInfo:"registration" ,
                 errormessage: errors,
@@ -136,7 +127,7 @@ sgMail.send(msg)
            console.log(`Data saved`);
        })
        .catch(err=>console.log(`Error happened when inserting in the database :${err}`));
-        res.render("general/dashboard",{
+        res.render("/dashboard",{
             title: "dashboard",
             headingInfo:"dashboard",
             email: req.body.email,
@@ -147,19 +138,11 @@ sgMail.send(msg)
 })
 .catch(err=>{
     console.log(`Error ${err}`);
-
 })
         }
         })
         .catch(err=>console.log(`Error happened when retrieving in the database :${err}`))
-
-
-
-    
  }
-
-
-
 });
 
 
@@ -173,7 +156,7 @@ router.post("/login",(req,res)=>{
         if(user==null)
         {   
              errors.push({passwordError:"Sorry, your email and/or password incorrect "});
-            res.render("general/login",{
+            res.render("login",{
                 errormessage:errors
             });
                 
@@ -200,7 +183,7 @@ router.post("/login",(req,res)=>{
                     
                     errors.push({passwordError:"Sorry, your email and/or password incorrect "});
                    
-                    res.render("general/login",{
+                    res.render("login",{
                         errormessage:errors
                     })
                 }
@@ -217,17 +200,21 @@ router.post("/login",(req,res)=>{
 
 });
 router.get("/logout",(req,res)=>{
+ 
     req.session.destroy();
-    res.redirect("general/login"); //redirect
-
+   
+    res.redirect("login"); 
+    
 });
-router.get("/profile",isAuthenticated,dashBoardLoader);
+router.get("/profile",isAuthenticated,dashBoardLoader,(req,res)=>{
+    res.render("admindashboard");
+})
 
 
 
 
 router.get("/dashboard",(req,res)=>{
-    res.render("general/dashboard",{
+    res.render("dashboard",{
         title: "dashboard",
         headingInfo:"dashboard",
         email: req.body.email,
@@ -236,4 +223,5 @@ router.get("/dashboard",(req,res)=>{
        });
 
 })
+
 module.exports=router;
