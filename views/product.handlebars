@@ -1,12 +1,29 @@
 <div id="productsPage">
+    
     <div id="sidebar">
         <ul>
+            <li><form id="productsearch" action="/product" method="POST">
+              
+                <select name="productmenu">
+                    <option value="Automotive">Automotive</option>
+                    <option value="Arts & Crafts">Arts & Crafts</option>
+                    <option value="Beauty and personal care">Beauty and personal care</option>
+                    <option value="Computers">Computers</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Women's Fashion">Women's Fashion</option>
+                    <option value="Men's Fashion">Men's Fashion</option>
+                    <option value="Home and Kitchen">Home and Kitchen</option>
+                    <option value="Toys and Games">Toys and Games</option>
+                </select>
+                <input id="button" type="submit" value="search">
+                </form>
+            </li>
             <li><a href="/product">Automotive</a></li>
             <li><a href="/product">Arts & Crafts</a></li>
             <li><a href="/product">Beauty and personal care</a></li>
             <li><a href="/product">Computers</a></li>
             <li><a href="/product">Electronics</a></li>
-            <li><a href="/product">Woman's Fashion</a></li>
+            <li><a href="/product">Women's Fashion</a></li>
             <li><a href="/product">Men's Fashion</a></li>
             <li><a href="/product">Home and Kitchen</a></li>
             <li><a href="/product">Toys and Games</a></li>
@@ -16,8 +33,8 @@
         
             {{#each data}}
             <div id="eachproducts">
-                {{#if this.Bestseller}}
-                <img id="besticon" src ="bestseller.PNG" ali="bestseller" width="40" height="40">
+                {{#if this.bestseller}}
+                <img id="besticon" src ="pic/bestseller.PNG" ali="bestseller" width="40" height="40">
                 {{/if}}
                 <img id="productpic" src="pic/{{this.picture}}" ali="{{this.name}}">
                 <p>{{this.name}}<br>->${{this.price}}</p>

@@ -37,6 +37,31 @@ router.get("/product",(req,res)=>{
     
 });
 
+router.post("/product",(req,res)=>{
+    productModel.find({category:req.body.productmenu})
+    .then((products)=>{
+        const productarr = products.map(product=>{
+            return{
+                id: product._id,
+                name: product.name,
+                price: product.price,
+                description: product.description,
+                category: product.category,
+                quantity: product.quantity,
+                bestseller: product.bestseller,
+                picture: product.picture
+            }
+
+        });
+        res.render("product",{
+            title: "Products",
+             headingInfo:"Products",
+            data: productarr
+
+        })
+
+})
+})
 
 
 router.get("/productadd",(req,res)=>{

@@ -9,7 +9,7 @@ const dashBoardLoader = require("../middleware/authorization");
 
 
 router.get("/",(req,res)=>{
-    let best=[];
+   
     productModel.find({bestseller:true})
     .then(bests=>{
         const bestsells = bests.map(best=>{
@@ -24,35 +24,52 @@ router.get("/",(req,res)=>{
                 picture: best.picture
             }
         })
-       best = bestsells;
-       console.log(best);
-        })
-        
-    
-   
-    .catch(err=>console.log(`Error happened when get bestseller :${err}`));
-
-    let tempcate=[];
-    productModel.findOne({category:"Men's Clothes"})
-    .then(product =>{ tempcate.push(product);})
-    .catch(err=>console.log(`Error happened when get category :${err}`));
-    productModel.findOne({category:"Woman's Clothes"})
-    .then(product =>{ tempcate.push(product);})
-    .catch(err=>console.log(`Error happened when get category :${err}`));
-    productModel.findOne({category:"Beauty and personal care"})
-    .then(product =>{ tempcate.push(product);})
-    .catch(err=>console.log(`Error happened when get category :${err}`))
-    productModel.findOne({category:"Home and Kitchen"})
-    .then(product =>{ tempcate.push(product);})
-    .catch(err=>console.log(`Error happened when get category :${err}`))
-
-    res.render("home",{
+        productModel.find()
+        .then(categories=>{
+            const cate = categories.map(category=>{
+                return{
+                    id: category.id,
+                    name: category.name,
+                    price: category.price,
+                    description: category.price,
+                    category: category.category,
+                    quantity: category.quantity,
+                    bestseller: category.bestseller,
+                    picture: category.picture
+                }
+            })
+       
+           
+                for(let i =0;i<cate.length;i++){
+                    for(let j =i+1;j<cate.length;j++){
+                    if(cate[i].category ==cate[j].category){
+                        cate.splice(i,1);
+                    }
+                    }
+                }
+                while(cate.length>4){
+                cate.pop();
+                }
+            
+            while(bestsells.length>4){
+                bestsells.pop();
+            }
+       res.render("home",{
         title: "Home",
         headingInfo:"Home Page",
-        productCategory: tempcate,
-        bestSell: best
+        productCategory: cate,
+        bestSell: bestsells
     });
+})
+    .catch(err=>console.log(`Error happened when get category  :${err}`));
+})
+        .catch(err=>console.log(`Error happened when get bestseller  :${err}`));
+
+   
+
+    
 });
+
  
 
 router.get("/registration",(req,res)=>{
