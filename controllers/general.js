@@ -9,12 +9,48 @@ const dashBoardLoader = require("../middleware/authorization");
 
 
 router.get("/",(req,res)=>{
-    var best=[];
+    let best=[];
+    productModel.find({bestseller:true})
+    .then(bests=>{
+        const bestsells = bests.map(best=>{
+            return{
+                id: best.id,
+                name: best.name,
+                price: best.price,
+                description: best.price,
+                category: best.category,
+                quantity: best.quantity,
+                bestseller: best.bestseller,
+                picture: best.picture
+            }
+        })
+       best = bestsells;
+       console.log(best);
+        })
+        
+    
+   
+    .catch(err=>console.log(`Error happened when get bestseller :${err}`));
+
+    let tempcate=[];
+    productModel.findOne({category:"Men's Clothes"})
+    .then(product =>{ tempcate.push(product);})
+    .catch(err=>console.log(`Error happened when get category :${err}`));
+    productModel.findOne({category:"Woman's Clothes"})
+    .then(product =>{ tempcate.push(product);})
+    .catch(err=>console.log(`Error happened when get category :${err}`));
+    productModel.findOne({category:"Beauty and personal care"})
+    .then(product =>{ tempcate.push(product);})
+    .catch(err=>console.log(`Error happened when get category :${err}`))
+    productModel.findOne({category:"Home and Kitchen"})
+    .then(product =>{ tempcate.push(product);})
+    .catch(err=>console.log(`Error happened when get category :${err}`))
+
     res.render("home",{
         title: "Home",
         headingInfo:"Home Page",
-        productCategory: productModel.cate,
-        bestSell: best 
+        productCategory: tempcate,
+        bestSell: best
     });
 });
  

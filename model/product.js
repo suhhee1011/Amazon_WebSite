@@ -33,7 +33,7 @@ const mongoose = require('mongoose');
   });
 
 var productModel = mongoose.model('Product', productSchema);
-var cate=[];
+
 /*
 var cate = function(){
     var tempcate=[];
@@ -51,7 +51,7 @@ var cate = function(){
     .catch(err=>console.log(`Error happened when get category :${err}`))
     return tempcate;
 }
-/*
+
 var best = function(){
     
     productModel.find({bestseller:true})
@@ -68,14 +68,15 @@ var best = function(){
                 picture: best.picture
             }
         })
-       
+        return bestsells;
         })
-    })
+    
    
     .catch(err=>console.log(`Error happened when get bestseller :${err}`));
- 
-
+ return best;
+       
 }
 */
   module.exports = productModel;
+ 
   
