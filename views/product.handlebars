@@ -33,13 +33,14 @@
         
             {{#each data}}
             <div id="eachproducts">
+                <a href="/productDesc/{{id}}">
                 {{#if this.bestseller}}
                 <img id="besticon" src ="pic/bestseller.PNG" ali="bestseller" width="40" height="40">
                 {{/if}}
                 <img id="productpic" src="pic/{{this.picture}}" ali="{{this.name}}">
                 <p>{{this.name}}<br>->${{this.price}}</p>
                 <p>Category: {{this.category}}</p>
-                
+                </a>
               
             </div>
             {{/each}}

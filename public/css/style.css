@@ -141,6 +141,15 @@ p.ctitle{
 
 
 }
+#productDesc{
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    width: 70%;
+    align-content: space-evenly;
+
+}
+
+
 #products{
     
     display: grid;
@@ -150,7 +159,7 @@ p.ctitle{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-#eachproducts {
+#eachproducts, #ProdPicture{
    
     width: 80%;
     height:90%;

@@ -2,7 +2,10 @@ const isLoggedIn = (req,res,next)=>{
     if(req.session.userInfo){
         next();
     }else{
-        res.redirect("login");
+        res.render("login"),{
+            title: "login",
+            headingInfo:"login"
+        }
 
     }
 

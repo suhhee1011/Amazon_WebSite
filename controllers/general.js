@@ -180,7 +180,7 @@ sgMail.send(msg)
            console.log(`Data saved`);
        })
        .catch(err=>console.log(`Error happened when inserting in the database :${err}`));
-        res.render("/dashboard",{
+        res.render("dashboard",{
             title: "dashboard",
             headingInfo:"dashboard",
             email: req.body.email,

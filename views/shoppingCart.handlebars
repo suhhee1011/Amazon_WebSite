@@ -1,0 +1,48 @@
+
+<form method="POST" action="/placeOrder">
+<fieldset>
+<legend>Shopping Cart</legend>
+<table style="width:70%" border="1">
+    {{#each orderArr}}
+
+    <tr>
+    <td rowspan="5"><img width="100" height="100"src ="/pic/{{this.picture}}"></th>
+    <td colspan="2" rowspan="2">{{this.name}}</td>
+    <td>Order Summary</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Items: {{this.amount}}</td>
+    <td>CDN$ {{this.total}}</td>
+  </tr>
+  <tr>
+    <td colspan="2">CDN$ {{this.price}}</td>
+    <td colspan="2" rowspan="3"></td>
+  </tr>
+  <tr>
+    {{#if this.stockcheck}}
+    <td colspan="2"> 
+    In Stock: {{this.quantity}} left</td>
+    {{else}}
+       <td colspan="2">  Out of Stock</td>
+    {{/if}}</td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2">Quantity: {{this.quantity}}</td>
+  </tr>
+  <tr>
+    </tr>
+    {{/each}}
+  <tr>
+    <td colspan="2" rowspan="2"><input id="button" type="submit" width="200" height="50"value="Place your Order"></td>
+    
+    <td colspan="2" rowspan="2">Order Total: CDN${{totalPrice}}</td>
+  </tr>
+  <tr></tr>
+ 
+ 
+ 
+</table>
+</fieldset>
+</form>

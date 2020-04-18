@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
   const Schema = mongoose.Schema;
   const bcrypt = require("bcryptjs");
-
   const clientSchema = new Schema({
 
     
@@ -21,7 +20,12 @@ const mongoose = require('mongoose');
     {
         type:String,
         default:"User"
-    }
+    },
+  
+    
+        
+
+    
     
   });
   clientSchema.pre("save",function(next){

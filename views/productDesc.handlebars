@@ -1,0 +1,32 @@
+<form id ="productDesc" method="POST" action="/shoppingCart" >
+
+    <fieldset>
+  
+    <div id ="ProdPicture">
+    <img id ="productDescPic" src="/pic/{{picture}}">
+    </div>
+    <div id ="ProdDesc">
+    <h4>{{name}}</h4>
+    <h4>Price:CDN${{price}}</h4>
+    <p>Description: {{description}}</p>
+    {{#if stockcheck}}
+    <h3>In Stock</h3>
+    <h4>{{quantity}} left</h4>
+    {{else}}
+    <h1> Out of Stock</h1>
+    {{/if}}
+    <label> Do you want to put in the shopping cart?</label>
+    <input type="checkbox" id ="id"name="id" value="{{this.id}}" checked>
+    <label for="shopcartyes"> Yes</label><br>
+    {{#each errors}}
+     <div id ="Error">{{this.checkboserror}}</div>
+    {{/each}}
+   {{clientid}}
+    <label for="howmany">How many do you want?</label><br>
+    <input type="range" id="howmany" name="howmany" value=1 max ={{quantity}} oninput="howmanyshow.value=parseInt(howmany.value)">   
+    <output name="howmanyshow" for="howmany"></output><br><br>
+    <input id="button" type="submit" value="Shopping Cart">
+  
+    </div>
+      </fieldset>
+</form>
