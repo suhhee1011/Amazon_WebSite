@@ -17,7 +17,7 @@
     {{/each}}
 
     <label for="description">Please enter the description</label><br>
-    <textarea id="description" name="description">{{description}}</textarea><br><br>
+    <textarea id="description" name="description">{{description}}</textarea><br>
       {{#each errormessage}}
        <div id ="Error">{{this.descriptionError}}</div>
        {{/each}}
@@ -39,10 +39,16 @@
             <option value="true">BestSeller</option>
             <option value="false">Not BestSeller</option>
         </select><br>
-
+ {{#each errormessage}}
+   <div id ="Error">{{this.bestSellerError}}</div>
+   {{/each}}
     <label>Please upload a picture</label>
-        <input type="file" name="picture" id="picture"> <br><br>
+        <input type="file" name="picture" id="picture"> 
+          {{#each errormessage}}
+   <div id ="Error">{{this.pictureError}}</div>
+   {{/each}}<br><br>
     <input id="button" type="submit" value="productadd">
+   
     </fieldset>
     </form>
     

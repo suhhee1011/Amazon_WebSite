@@ -19,12 +19,17 @@
     <input type="checkbox" id ="id"name="id" value="{{this.id}}" checked>
     <label for="shopcartyes"> Yes</label><br>
     {{#each errors}}
-     <div id ="Error">{{this.checkboserror}}</div>
+     <div id ="Error">{{this.checkboxerror}}</div>
     {{/each}}
    {{clientid}}
     <label for="howmany">How many do you want?</label><br>
     <input type="range" id="howmany" name="howmany" value=1 max ={{quantity}} oninput="howmanyshow.value=parseInt(howmany.value)">   
-    <output name="howmanyshow" for="howmany"></output><br><br>
+    <output name="howmanyshow" for="howmany"></output>
+          {{#each errormessage}}
+   <div id ="Error">
+     {{this.pictureError}}</div>
+   {{/each}}
+   <br><br><br><br>
     <input id="button" type="submit" value="Shopping Cart">
   
     </div>

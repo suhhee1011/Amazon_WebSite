@@ -10,7 +10,7 @@ const path = require("path");
 
 //show all products
 router.get("/product",(req,res)=>{
-    console.log("2");
+
     productModel.find()
     .then((products)=>{
         const productarr = products.map(product=>{
@@ -41,7 +41,7 @@ router.get("/product",(req,res)=>{
 });
 
 router.post("/product",(req,res)=>{
-    console.log("3");
+
     productModel.find({category:req.body.productmenu})
     .then((products)=>{
         const productarr = products.map(product=>{
@@ -69,8 +69,7 @@ router.post("/product",(req,res)=>{
 
 
 router.get("/productadd",isLoggedIn,dashBoardLoader,(req,res)=>{
-    console.log("4");
-    console.log("here")
+  
     res.render("productadd",{
         title: "ProductADD",
         headingInfo:"ProductsAdd"
@@ -78,7 +77,43 @@ router.get("/productadd",isLoggedIn,dashBoardLoader,(req,res)=>{
     });
 });
 router.post("/productadd",isLoggedIn,dashBoardLoader,(req,res)=>{
-  
+  let errors=[];
+    if(req.body.name==""){
+        errors.push({nameError:"Please enter product name"});
+    }
+    if(req.body.price<=0){
+        errors.push({priceError:"Please enter product price larger than 0"});
+    }
+    
+    if(req.body.description==""){
+        errors.push({descriptionError:"Please enter product description"});
+    }
+    if(req.body.category==""){
+        errors.push({categoryError:"Please enter product category"});
+    }
+    if(req.body.quantity<=0)
+        errors.push({quantityError:"Please enter product quantity larger than 0"})
+    if(req.body.bestseller==null){
+        errors.push({bestsellerError:"Please choose product category"});
+    }if(req.body.picture==null){
+        errors.push({pictureError:"Please upload an image file"})
+    }else if(req.body.picture !="^*.(png|jpeg|jpg|gif)$"){
+        errors.push({pictureError:"Please upload an image file"})
+    }
+    if(errors.length>0){
+        res.render("productadd",{
+            title: "productadd",
+            headingInfo:"productadd" ,
+            errormessage: errors,
+            name: req.body.name,
+            price: req.body.price,
+            description: req.body.description,
+            category: req.body.category,
+            quantity: req.body.quantity,
+            bestseller: req.body.bestseller,
+            picture: req.body.picture
+        })
+    }else{
     const newProduct = {
         name: req.body.name,
         price: req.body.price,
@@ -89,11 +124,11 @@ router.post("/productadd",isLoggedIn,dashBoardLoader,(req,res)=>{
        
         
     }
-    console.log(req.files.picture.name);
+  
     const product = new productModel(newProduct);
     product.save()
     .then((product)=>{  
-        console.log(req.files.picture.name);
+
         //To rename the file so that the file name will not overwrite the other files.
        req.files.picture.name= `pic_${product._id}${path.parse(req.files.picture.name).ext}`;
        
@@ -109,6 +144,7 @@ router.post("/productadd",isLoggedIn,dashBoardLoader,(req,res)=>{
         })
     })
     .catch(err=> console.log(`Error happened when inserting in the database: ${err}`));
+}
 })
 router.get("/productList",isLoggedIn,dashBoardLoader,(req,res)=>{
 
@@ -150,6 +186,43 @@ router.get("/productedit/:id",isLoggedIn,dashBoardLoader,(req,res)=>{
     .catch(err=> console.log(`Error happened when editing in the database: ${err}`));
 })
 router.put("/update/:id",isLoggedIn,dashBoardLoader,(req,res)=>{
+    let errors=[];
+    if(req.body.name==""){
+        errors.push({nameError:"Please enter product name"});
+    }
+    if(req.body.price<=0){
+        errors.push({priceError:"Please enter product price larger than 0"});
+    }
+    
+    if(req.body.description==""){
+        errors.push({descriptionError:"Please enter product description"});
+    }
+    if(req.body.category==""){
+        errors.push({categoryError:"Please enter product category"});
+    }
+    if(req.body.quantity<=0)
+        errors.push({quantityError:"Please enter product quantity larger than 0"})
+    if(req.body.bestseller==null){
+        errors.push({bestsellerError:"Please choose product category"});
+    }if(req.body.picture==null){
+        errors.push({pictureError:"Please upload an image file"})
+    }else if(req.body.picture !="^*.(png|jpeg|jpg|gif)$"){
+        errors.push({pictureError:"Please upload an image file"})
+    }
+    if(errors.length>0){
+        res.render("productedit/:id",{
+            title: "productadd",
+            headingInfo:"productadd" ,
+            errormessage: errors,
+            name: req.body.name,
+            price: req.body.price,
+            description: req.body.description,
+            category: req.body.category,
+            quantity: req.body.quantity,
+            bestseller: req.body.bestseller,
+            picture: req.body.picture
+        })
+    }else{
     const product = {
         name: req.body.name,
         price: req.body.price,
@@ -161,12 +234,12 @@ router.put("/update/:id",isLoggedIn,dashBoardLoader,(req,res)=>{
     }
     productModel.updateOne({_id:req.params.id},product)
     .then((product)=>{
-        console.log("non");
+      
         req.files.picture.name= `pic_${req.params.id}${path.parse(req.files.picture.name).ext}`;
-        console.log(req.files.picture.name);
+
         req.files.picture.mv(`public/pic/${req.files.picture.name}`)
         .then(()=>{
-            console.log(req.files.picture.name)
+       
             productModel.updateOne({_id:req.params.id},{
                 
                 picture:req.files.picture.name
@@ -182,7 +255,7 @@ router.put("/update/:id",isLoggedIn,dashBoardLoader,(req,res)=>{
 
     })
     .catch(err=> console.log(`Error happened when updating in the database: ${err}`));
-  
+}
 });
 
 router.delete("/delete/:id",isLoggedIn,dashBoardLoader,(req,res)=>{
@@ -195,10 +268,8 @@ router.delete("/delete/:id",isLoggedIn,dashBoardLoader,(req,res)=>{
 
 })
 router.get("/productDesc/:id",(req,res)=>{
-    console.log("a");
     productModel.findById(req.params.id)
     .then((product)=>{
-        console.log(req.params.id)
         
        let stockcheck = function(){
             if(product.quantity>0){
@@ -233,8 +304,7 @@ router.get("/shoppingCart",isLoggedIn, (req,res)=>{
     let sum =0;
     var orderArray=[],productarr=[];
 
-    console.log("1");
-    
+
     orderModel.find({email:req.session.userInfo.email})
         .then((orders)=>{
           const orderArray =  orders.map(order =>{
@@ -285,8 +355,7 @@ router.get("/shoppingCart",isLoggedIn, (req,res)=>{
             }
         }
         }
-        console.log(orderArray);
-        console.log(sum);
+      
            res.render(("shoppingCart"),{
                orderArr: totalarr,
                totalPrice : sum
@@ -301,10 +370,35 @@ router.get("/shoppingCart",isLoggedIn, (req,res)=>{
 })
       
 router.post("/shoppingCart",isLoggedIn,(req,res)=>{
-    
+    let errors=[];
+    if(req.body.id ==""){
+        errors.push({checkboxError:"Please check the checkbox"});
+
+    }
+    if(req.body.howmany<=0){
+        errors.push({howmanyErrors:"Please choose more than 0"});
+    }
+    if(errors.length>0){
+
+    }
+    if(errors.length>0){
+        res.render("productadd",{
+            title: "productadd",
+            headingInfo:"productadd" ,
+            errormessage: errors,
+            name: req.body.name,
+            price: req.body.price,
+            description: req.body.description,
+            category: req.body.category,
+            quantity: req.body.quantity,
+            bestseller: req.body.bestseller,
+            picture: req.body.picture
+        })
+    }else{
     var productobj;
     productModel.findById(req.body.id)
     .then((product) =>{
+
         var productobj = function(){
         return {
             id:product._id,
@@ -331,6 +425,7 @@ router.post("/shoppingCart",isLoggedIn,(req,res)=>{
     }
     })
     })
+}
 })
     
  
@@ -342,7 +437,7 @@ router.post("/placeOrder",isLoggedIn,(req,res)=>{
     let sum =0;
     var orderArray=[],productarr=[];
 
-    console.log("1");
+    
     
     orderModel.find({email:req.session.userInfo.email})
         .then((orders)=>{
@@ -399,16 +494,14 @@ router.post("/placeOrder",isLoggedIn,(req,res)=>{
             productModel.updateOne({_id:totalarr[i].prodid},{
                 quantity:tempnum
             })
-            console.log("b",tempnum);
+       
         
          }
-         console.log("c",totalarr.length);
-         console.log(totalarr.length);
-         */
+      */
             let text ="";
             for(let temp =0;temp<totalarr.length;temp++){
                 text+=temp+")"+totalarr[temp].name+" - "+totalarr[temp].amount+"=> CDN$ "+totalarr[temp].total+"<br>";
-                console.log("d",totalarr.length);
+              
             }
             
             text+="Your total puchased amount is CDN$ "+sum;
