@@ -204,13 +204,10 @@ router.put("/update/:id",isLoggedIn,dashBoardLoader,(req,res)=>{
         errors.push({quantityError:"Please enter product quantity larger than 0"})
     if(req.body.bestseller==null){
         errors.push({bestsellerError:"Please choose product category"});
-    }if(req.body.picture==null){
-        errors.push({pictureError:"Please upload an image file"})
-    }else if(req.body.picture !="^([\\S]+(\\.(?!)(jpg|png|gif|bmp))$)"){
-        errors.push({pictureError:"Please upload an image file(end with png,jpeg,jpg and gif)"})
     }
     if(errors.length>0){
-        res.render("productedit/:id",{
+        console,log("dfdf");
+        res.render("productedit",{
             title: "productadd",
             headingInfo:"productadd" ,
             errormessage: errors,
@@ -235,25 +232,14 @@ router.put("/update/:id",isLoggedIn,dashBoardLoader,(req,res)=>{
     productModel.updateOne({_id:req.params.id},product)
     .then((product)=>{
       
-        req.files.picture.name= `pic_${req.params.id}${path.parse(req.files.picture.name).ext}`;
-
-        req.files.picture.mv(`public/pic/${req.files.picture.name}`)
-        .then(()=>{
-       
-            productModel.updateOne({_id:req.params.id},{
-                
-                picture:req.files.picture.name
-
-            })
-            .then(()=>{
                 res.redirect("/productList");
 
             })
 
-        })
+        
        
 
-    })
+    
     .catch(err=> console.log(`Error happened when updating in the database: ${err}`));
 }
 });
