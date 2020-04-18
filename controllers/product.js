@@ -393,10 +393,22 @@ router.post("/placeOrder",isLoggedIn,(req,res)=>{
             }
         }
         }
+        /*for(let i =0;i<=totalarr.length;i++){
+            let tempnum = totalarr[i].quantity-totalarr[i].amount;
+           
+            productModel.updateOne({_id:totalarr[i].prodid},{
+                quantity:tempnum
+            })
+            console.log("b",tempnum);
         
+         }
+         console.log("c",totalarr.length);
+         console.log(totalarr.length);
+         */
             let text ="";
             for(let temp =0;temp<totalarr.length;temp++){
-                text+=totalarr[temp].name+" - "+totalarr[temp].amount+"=> CDN$ "+totalarr[temp].total+"<br>";
+                text+=temp+")"+totalarr[temp].name+" - "+totalarr[temp].amount+"=> CDN$ "+totalarr[temp].total+"<br>";
+                console.log("d",totalarr.length);
             }
             
             text+="Your total puchased amount is CDN$ "+sum;
@@ -419,6 +431,23 @@ router.post("/placeOrder",isLoggedIn,(req,res)=>{
         sgMail.send(msg)
         .then(()=>{
             console.log("email sent");
+            orderModel.find({email:req.session.userInfo.email})
+        .then((orders)=>{
+          const orderArray =  orders.map(order =>{
+              
+          
+          return{
+            id: order._id,
+            prodid: order.prodid,
+            amount: order.amount,
+            email: order.email
+        }    
+    })
+       
+       
+
+        
+           
             orderModel.deleteMany({email:req.session.userInfo.email})
             .then(()=>{
                 if(req.session.userInfo.type=="Admin"){
@@ -443,6 +472,7 @@ router.post("/placeOrder",isLoggedIn,(req,res)=>{
 
 
 
+})
 })
 
 module.exports=router;
