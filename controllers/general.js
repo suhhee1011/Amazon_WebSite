@@ -119,7 +119,7 @@ router.post("/registration",(req,res)=>{
         errors.push({passwordAgainerror:"password is not matched"});
     }
     if(errors.length>0){
-        res.render("/registration",{
+        res.render("registration",{
             title: "registration",
             headingInfo:"registration" ,
             errormessage: errors,
