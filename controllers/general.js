@@ -137,7 +137,7 @@ router.post("/registration",(req,res)=>{
            //Show error
             if(user){
             errors.push({emailError:"please use other email"});
-            res.render("/registration",{
+            res.render("registration",{
                 title: "registration",
                 headingInfo:"registration" ,
                 errormessage: errors,
