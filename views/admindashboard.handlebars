@@ -1,6 +1,14 @@
-<h1>Hello {{user.firstname}} {{user.lastname}}! </h1>
-<h1>This is an Administrator dashboard</h1>
-<h1>Thank you!</h1>
-<h1><a href="/productadd">ADD PRODUCT</a></h1>
-<h1><a href="/productList">VIEW PRODUCT</a></h1>
-<h1><a href="/shoppingCart">VIEW YOUR CART</a></h1>
+<fieldset height: 2000; width: 2000;>
+<legend>Admin dashboard</legend>
+<h1 align ="left">Hello {{user.firstname}} {{user.lastname}}! </h1>
+<h1 align ="left">This is an Administrator dashboard</h1>
+<h1 align ="left">Thank you!</h1>
+<table border =1>
+    <tbody>
+        <tr>
+<td><h3><a href="/productadd">Add Product</a></h3></td>
+<td><h3><a href="/productList">Maintain Product</a></h3></td>
+<td><h3><a href="/shoppingCart">My Shopping Cart</a></h3></td>
+</tr>
+</tbody>
+</table>

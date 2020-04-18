@@ -1,7 +1,10 @@
 
 <form method="POST" action="/placeOrder">
 <fieldset>
-
+    {{#each errors}}
+   <div id ="Error">
+     {{this.cartError}}</div>
+   {{/each}}
 <table style="width:70%" border="1">
     {{#each orderArr}}
 

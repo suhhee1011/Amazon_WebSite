@@ -368,9 +368,9 @@ router.post("/shoppingCart",isLoggedIn,(req,res)=>{
 
     }
     if(errors.length>0){
-        res.render("productadd",{
-            title: "productadd",
-            headingInfo:"productadd" ,
+        res.render("productDesc",{
+            title: "productDesc",
+            headingInfo:"productDesc" ,
             errormessage: errors,
             name: req.body.name,
             price: req.body.price,
@@ -422,11 +422,23 @@ router.post("/placeOrder",isLoggedIn,(req,res)=>{
     let totalarr =[];
     let sum =0;
     var orderArray=[],productarr=[];
-
-    
-    
+    let errors =[];
     orderModel.find({email:req.session.userInfo.email})
-        .then((orders)=>{
+    .then((orders)=>{
+        if(orders==""){
+            errors.push({cartError:"You need to have at least one product inside cart"})
+
+        }
+        
+    if(errors.length>0){
+        res.render("shoppingCart",{
+            title: "shoppingCart",
+            headingInfo:"shoppingCart" ,
+            errormessage: errors
+        })
+    }else{
+   
+        
           const orderArray =  orders.map(order =>{
               
           
@@ -551,7 +563,8 @@ router.post("/placeOrder",isLoggedIn,(req,res)=>{
 
 
 
-})
-})
 
+    }
+})
+})
 module.exports=router;
