@@ -78,6 +78,7 @@ router.get("/productadd",isLoggedIn,dashBoardLoader,(req,res)=>{
 });
 router.post("/productadd",isLoggedIn,dashBoardLoader,(req,res)=>{
   let errors=[];
+  let filepattern="^([\\S]+(\\.(?!)(jpg|png|gif|bmp|JPG|PNG|GIF|BMP|JPEG|jpeg))$)"
     if(req.body.name==""){
         errors.push({nameError:"Please enter product name"});
     }
@@ -95,10 +96,9 @@ router.post("/productadd",isLoggedIn,dashBoardLoader,(req,res)=>{
         errors.push({quantityError:"Please enter product quantity larger than 0"})
     if(req.body.bestseller==null){
         errors.push({bestsellerError:"Please choose product category"});
-    }if(req.body.picture==null){
-        errors.push({pictureError:"Please upload an image file"})
-    }else if(req.body.picture !="^*.(png|jpeg|jpg|gif)$"){
-        errors.push({pictureError:"Please upload an image file"})
+    }
+     if(req.files.picture.mimetype != "image/gif"&&req.files.picture.mimetype != "image/GIF"&&req.files.picture.mimetype != "image/JPEG"&&req.files.picture.mimetype != "image/jpeg"&&req.files.picture.mimetype != "image/jpg"&&req.files.picture.mimetype != "image/JPG"&&req.files.picture.mimetype != "image/PNG"&&req.files.picture.mimetype != "image/png"){
+        errors.push({pictureError:"Please upload an image file(end with png,jpeg,jpgand gif)"})
     }
     if(errors.length>0){
         res.render("productadd",{
@@ -206,8 +206,8 @@ router.put("/update/:id",isLoggedIn,dashBoardLoader,(req,res)=>{
         errors.push({bestsellerError:"Please choose product category"});
     }if(req.body.picture==null){
         errors.push({pictureError:"Please upload an image file"})
-    }else if(req.body.picture !="^*.(png|jpeg|jpg|gif)$"){
-        errors.push({pictureError:"Please upload an image file"})
+    }else if(req.body.picture !="^([\\S]+(\\.(?!)(jpg|png|gif|bmp))$)"){
+        errors.push({pictureError:"Please upload an image file(end with png,jpeg,jpg and gif)"})
     }
     if(errors.length>0){
         res.render("productedit/:id",{
