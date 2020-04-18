@@ -6,7 +6,7 @@
     {{#each orderArr}}
 
     <tr>
-    <td rowspan="5"><img width="100" height="100"src ="/pic/{{this.picture}}"></th>
+    <td rowspan="4"><img width="100" height="100"src ="/pic/{{this.picture}}"></th>
     <td colspan="2" rowspan="2">{{this.name}}</td>
     <td>Order Summary</td>
     <td></td>
@@ -17,7 +17,7 @@
   </tr>
   <tr>
     <td colspan="2">CDN$ {{this.price}}</td>
-    <td colspan="2" rowspan="3"></td>
+    <td colspan="2" rowspan="2"></td>
   </tr>
   <tr>
     {{#if this.stockcheck}}
@@ -28,9 +28,7 @@
     {{/if}}</td>
   </tr>
  
-  <tr>
-    <td colspan="2">Quantity: {{this.quantity}}</td>
-  </tr>
+  
   <tr>
     </tr>
     {{/each}}
