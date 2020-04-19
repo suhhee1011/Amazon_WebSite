@@ -1,7 +1,8 @@
 body{
     background-color: rgb(223,204,204);
     text-align: center;
-    font-family: font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    box-shadow: 10px 10px 5px grey;
 }
 /*navigation bar*/
 nav ul{
@@ -14,6 +15,7 @@ nav ul{
     width: 100%;
     font-size:1.5vw;
     font-weight: bold;
+    box-shadow: 10px 10px 5px grey;
 }
 nav li {
     float:left;
@@ -46,6 +48,8 @@ nav img{
     background-color: #f1f1f1;
     border-radius: 10%;
     font-size:1.5vw;
+    box-shadow: 10px 10px 5px grey;
+    
   }
   
   #sidebar li a {
@@ -67,6 +71,7 @@ nav img{
 #promo img{
     width:100%;
     height:30%;
+    box-shadow: 10px 10px 5px grey;
 
 }
 #bestsell{
@@ -89,6 +94,7 @@ p.ctitle{
     grid-template-columns: 1fr 1fr 1fr 1fr;
     align-content: space-evenly;
    
+   
     
 
 }
@@ -108,7 +114,7 @@ p.ctitle{
     height:80%;
     padding: 5%;
     margin: 0% 2%;
-    border-style: outset;
+    box-shadow: 10px 10px 5px grey;
     border-radius: 20%;
     
    
@@ -131,6 +137,7 @@ p.ctitle{
         padding: 5% 0%;
         margin: 0% 0%;
        font-size: 1.5vw;
+       box-shadow: 10px 10px 5px grey;
 
 }
 #productsPage{
@@ -172,6 +179,14 @@ p.ctitle{
     font-size: 1.5vw;
     overflow: hidden;
     border-style: outset;
+    box-shadow: 10px 10px 5px grey;
+}
+#loginfield,#regifield{
+    box-shadow: 10px 10px 5px grey;
+}
+
+#proddescfield{
+    box-shadow: 10px 10px 5px grey;
 }
 #productpic{
     position: relative;
@@ -180,7 +195,7 @@ p.ctitle{
     padding:5%;
     border-radius: 40%;
     margin: 5%;
-    
+    box-shadow: 10px 10px 5px grey;
    
 }
 #besticon{
@@ -257,6 +272,7 @@ input#button{
    
     #categorydiv, #bestsellerdiv {
         grid-template-columns: 1fr 1fr;
+       
     }
     #eachcategory{
         width: 90%;
