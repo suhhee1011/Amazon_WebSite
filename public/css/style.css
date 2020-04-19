@@ -193,11 +193,12 @@ p.ctitle{
     border-style: outset;
 
 }
-#regi input,#login input{
+#regi input,#login input, #login button{
     width: 15vw;
     height: 1.5vw;
     font-family: cursive;
     font-weight:bold;
+    font-size: 1.5vw;
 }
 #regi img,#login img{
    
@@ -209,11 +210,11 @@ p.ctitle{
 }
 #regi label,#login label{
     font-weight: bold;
-    font-size: 1vw;
+    font-size: 2vw;
 
 }
 #regi p, #login p{    
-    font-size: 1.5vw;
+    font-size: 3vw;
     font-family: cursive;
 
 }

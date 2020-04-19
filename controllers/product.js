@@ -286,6 +286,9 @@ router.get("/productDesc/:id",(req,res)=>{
 
 })
 router.get("/shoppingCart",isLoggedIn, (req,res)=>{
+    if(req.session.userInfo.type =="Admin"){
+        res.render("admindashboard");
+    }else{
     let totalarr =[];
     let sum =0;
     var orderArray=[],productarr=[];
@@ -342,15 +345,7 @@ router.get("/shoppingCart",isLoggedIn, (req,res)=>{
         }
         }
         sum = Math.round(sum);
-      if(req.session.userInfo.type =="Admin"){
-        
-           res.render(("shoppingCart"),{
-               orderArr: totalarr,
-               totalPrice : sum,
-               message:`30% off for admin =>\n CDN$${Math.round(sum*0.7)}`
-              
-           })
-        }else{
+    
            
             res.render(("shoppingCart"),{
                 orderArr: totalarr,
@@ -358,16 +353,19 @@ router.get("/shoppingCart",isLoggedIn, (req,res)=>{
                
             })
 
-        }
+        
         })
             
             
        
         }).catch(err=>console.log(`error from shopping cart2 ${err}`))
-        
+    }  
 })
       
 router.post("/shoppingCart",isLoggedIn,(req,res)=>{
+    if(req.session.userInfo.type =="Admin"){
+        res.render("admindashboard");
+    }else{
     let errors=[];
     if(req.body.id ==""){
         errors.push({checkboxError:"Please check the checkbox"});
@@ -414,16 +412,13 @@ router.post("/shoppingCart",isLoggedIn,(req,res)=>{
     const order = new orderModel(newOrder);
     order.save()
     .then(()=>
-    { if(req.session.userInfo.type=="Admin"){
-       
-        res.render("admindashboard");
-
-    }else{
+    { 
         res.render("userdashboard");
-    }
     })
+    
     })
 }
+    }
 })
     
  
