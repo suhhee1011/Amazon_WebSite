@@ -341,17 +341,17 @@ router.get("/shoppingCart",isLoggedIn, (req,res)=>{
             }
         }
         }
-       
+        sum = Math.round(sum);
       if(req.session.userInfo.type =="Admin"){
-        sum = Math.round(sum*0.7)
+        
            res.render(("shoppingCart"),{
                orderArr: totalarr,
                totalPrice : sum,
-               message:"30% off for admin"
+               message:`30% off for admin =>\n CDN$${Math.round(sum*0.7)}`
               
            })
         }else{
-            sum = math.round(sum);
+           
             res.render(("shoppingCart"),{
                 orderArr: totalarr,
                 totalPrice : sum

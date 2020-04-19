@@ -233,10 +233,15 @@ input#button{
 /* Small devices (phones, 576px and up)*/
   
 @media (max-width: 767.98px) {
+    #productDescPic{
+        height: 60vw;
+        width: 60vw;
+
+    }
     body{
         font-size:5vw;
     }
-    #promo,#sidebar{
+    #promo{
     display: none;   
     }
    
@@ -265,7 +270,15 @@ input#button{
 
 /*Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) and (max-width: 998.98px) { 
-    #promo,#sidebar{
+    #productDescPic{
+        height: 50vw;
+        width: 40vw;
+
+    }
+    body{
+        font-size:3vw;
+    }
+    #promo{
         display: none;   
         }
     nav img{
