@@ -8,8 +8,10 @@
     <div id="categorydiv">
     {{#each productCategory}}
     <div id="eachcategory">
+        
        <p>{{this.category}}</p>
-    <a href="/product"><img src ="/pic/{{this.picture}}" ali ="{{this.name}}"></a>
+        <a href="/productDesc/{{id}}">
+    <img src ="/pic/{{this.picture}}" ali ="{{this.name}}"></a>
       
     </div>
     {{/each}}   
@@ -22,7 +24,9 @@
      <div id="bestsellerdiv">
     {{#each bestSell}}
         <div id="eachbestsell">
+             <a href="/productDesc/{{id}}">
         <img id="bestsell" src ="/pic/{{this.picture}}" ali ="{{this.name}}">
+        </a>
         </div>
     {{/each}}   
     </div>

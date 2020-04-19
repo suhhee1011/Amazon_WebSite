@@ -231,7 +231,11 @@ input#button{
 
 }
 /* Small devices (phones, 576px and up)*/
+  
 @media (max-width: 767.98px) {
+    body{
+        font-size:5vw;
+    }
     #promo,#sidebar{
     display: none;   
     }

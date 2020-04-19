@@ -341,12 +341,24 @@ router.get("/shoppingCart",isLoggedIn, (req,res)=>{
             }
         }
         }
-      
+       
+      if(req.session.userInfo.type =="Admin"){
+        sum = Math.round(sum*0.7)
            res.render(("shoppingCart"),{
                orderArr: totalarr,
-               totalPrice : sum
+               totalPrice : sum,
+               message:"30% off for admin"
               
            })
+        }else{
+            sum = math.round(sum);
+            res.render(("shoppingCart"),{
+                orderArr: totalarr,
+                totalPrice : sum
+               
+            })
+
+        }
         })
             
             
@@ -486,6 +498,7 @@ router.post("/placeOrder",isLoggedIn,(req,res)=>{
             }
         }
         }
+        sum = Math.round(sum);
         /*for(let i =0;i<=totalarr.length;i++){
             let tempnum = totalarr[i].quantity-totalarr[i].amount;
            
