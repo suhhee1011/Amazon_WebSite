@@ -149,7 +149,10 @@ p.ctitle{
 
 }
 
-
+#besticon{
+    width:5vw;
+    height:5vw;
+}
 #products{
     
     display: grid;
@@ -231,13 +234,19 @@ input#button{
     color:red;
 
 }
+#selectbar{
+    height: 3vw;
+    width: 10vw;
+    font-size: 1vw;
+}
+
 /* Small devices (phones, 576px and up)*/
   
 @media (max-width: 767.98px) {
     #productDescPic{
         height: 60vw;
         width: 60vw;
-
+        font-size :2vw;
     }
     body{
         font-size:5vw;
@@ -265,12 +274,26 @@ input#button{
         display: grid;
         grid-template-columns: 1fr 1fr;
     }
+    #besticon{
+        width:9vw;
+        height:9vw;
+    }
+    #selectbar{
+        height: 3vw;
+        width: 20vw;
+        font-size: 2vw;
+    }
 
 
 }
 
 /*Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) and (max-width: 998.98px) { 
+    #selectbar{
+        height: 3vw;
+        width: 20vw;
+        font-size: 2vw;
+    }
     #productDescPic{
         height: 50vw;
         width: 40vw;
@@ -295,6 +318,9 @@ input#button{
         display: grid;
         grid-template-columns: 1fr 1fr;
     }
-
+    #besticon{
+        width:7vw;
+        height:7vw;
+    }
 }
 
